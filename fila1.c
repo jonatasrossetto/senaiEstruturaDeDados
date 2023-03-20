@@ -38,6 +38,8 @@ bool enqueue(queue *q, int newValue){
     if (q->head == NULL){
         q->head = newNode;
     }
+    
+    //increments the queue size
     q->size = q->size+1;
     return true;
 }
@@ -47,14 +49,23 @@ int queueSize(queue *q){
 }
 
 int dequeue(queue *q){
+    //checks if the queue is empty
     if (q->head==NULL) return INT_MIN;
+    
+    // creates a temporary node to store the actual head info
     node *temp = q->head;
-    int result = temp->value;
-    q->head = (q->head)->next;
+    int result = temp->value; // get the value stored in the head
+    q->head = (q->head)->next; // make the next node the new head
+    
+    //deals with the queue being empty by the dequeue action
     if (q->head==NULL){
         q->tail=NULL;
     }
+    
+    //decrements the queue size
     q->size = q->size-1;
+    
+    //free the memory allocated for the temp variable
     free(temp);
     return result;
 }
