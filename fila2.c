@@ -9,6 +9,28 @@ typedef struct Requisicao {
     char procedimento[10];
 } Requisicao;
 
+Requisicao cria_requisicao(char newNome[40], int newIdent, char newProced[10]){
+    Requisicao req;
+    strcpy(req.nome,newNome);
+    strcpy(req.procedimento,newProced);
+    req.identificador=newIdent;
+    return req;
+};
+
+char *get_nome(Requisicao req){
+    char *nome = req.nome;
+    return nome;
+}
+
+int get_identificador(Requisicao req){
+    return req.identificador;
+}
+
+char *get_procedimento(Requisicao req){
+    char *procedimento = req.procedimento;
+    return procedimento;
+}
+
 typedef struct node
 {
     Requisicao value;
@@ -90,10 +112,8 @@ void main(){
     initQueue(&q1);
 
     for (int i=0;i<10;i++){
-        Requisicao req;
-        strcpy(req.nome,nomes[i]);
-        strcpy(req.procedimento,procedimentos[i]);
-        req.identificador=i;
+        Requisicao req = cria_requisicao(nomes[i],i,procedimentos[i]);
+
         enqueue(&q1,req);
         printf("-------------\n");
         printf("identificador(%d)\n",i);
@@ -103,13 +123,13 @@ void main(){
     }
     printf("\n\n\n -------------\nretirando elementos da fila\n\n\n");
     
-    for (int i=0;i<10;i++){
+    for (int i=0;i<11;i++){
         Requisicao req;
         req = dequeue(&q1);
         printf("-------------\n");
-        printf("identificador(%d)\n",i);
-        printf("nome:%40s\n",req.nome);
-        printf("procedimento:%10s\n",req.procedimento);
+        printf("identificador(%d)\n",get_identificador(req));
+        printf("nome:%40s\n",get_nome(req));
+        printf("procedimento:%10s\n",get_procedimento(req));
         printf("size1:%d\n",queueSize(&q1));    
     }
 
