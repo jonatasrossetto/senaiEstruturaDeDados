@@ -9,11 +9,11 @@ typedef struct Requisicao {
     char procedimento[10];
 } Requisicao;
 
-Requisicao cria_requisicao(char newNome[40], int newIdent, char newProced[10]){
+Requisicao cria_requisicao(char novo_nome[40], int novo_identificador, char novo_procedimento[10]){
     Requisicao req;
-    strcpy(req.nome,newNome);
-    strcpy(req.procedimento,newProced);
-    req.identificador=newIdent;
+    strcpy(req.nome,novo_nome);
+    strcpy(req.procedimento,novo_procedimento);
+    req.identificador=novo_identificador;
     return req;
 };
 
@@ -30,6 +30,9 @@ char *get_procedimento(Requisicao req){
     char *procedimento = req.procedimento;
     return procedimento;
 }
+
+
+
 
 typedef struct node
 {
@@ -73,7 +76,7 @@ bool enqueue(queue *q, Requisicao newValue){
     return true;
 }
 
-int queueSize(queue *q){
+int get_size(queue *q){
     return q->size;
 }
 
@@ -119,7 +122,7 @@ void main(){
         printf("identificador(%d)\n",i);
         printf("nome:%40s\n",req.nome);
         printf("procedimento:%10s\n",req.procedimento);
-        printf("size1:%d\n",queueSize(&q1));    
+        printf("size1:%d\n",get_size(&q1));    
     }
     printf("\n\n\n -------------\nretirando elementos da fila\n\n\n");
     
@@ -130,7 +133,7 @@ void main(){
         printf("identificador(%d)\n",get_identificador(req));
         printf("nome:%40s\n",get_nome(req));
         printf("procedimento:%10s\n",get_procedimento(req));
-        printf("size1:%d\n",queueSize(&q1));    
+        printf("size1:%d\n",get_size(&q1));    
     }
 
     // printf("size1:%d\n",queueSize(&q1));
