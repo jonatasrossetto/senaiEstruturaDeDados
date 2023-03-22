@@ -16,7 +16,7 @@ int main() {
 
     char procedimentos[][20] = {"123.1", "345.6", "678.9", "098.1", "758.5", "23.4", "5.98", "4,32", "3.3", "1.4"};
     
-    struct queue *estrutura = get_queue();
+    struct queue *estrutura = aloca_fila(); //
     initQueue(estrutura);
 
     int i;
@@ -24,7 +24,7 @@ int main() {
     struct Requisicao *requisicao = get_requisicao();
     for(i = 0; i < 10; i++) {
         cria_requisicao(requisicao, nomes[i], i, procedimentos[i]);
-        enqueue(estrutura, requisicao);
+        inserir(estrutura, requisicao);
         printf("Insercao de %40s, quantidade na estrutura: %04d\n", get_nome(requisicao), get_size(estrutura));
     }
 
@@ -32,11 +32,13 @@ int main() {
     
     for(i = 0; i < 11; i++) {
         struct Requisicao *r = get_requisicao();
-        dequeue(estrutura,r);
+        remover(estrutura,r);
         printf("Removido    %40s, quantidade na estrutura: %04d\n", get_nome(r), get_size(estrutura));
         imprime(r);
         free(r);
     }
+
+   
 
     return 0;
 }

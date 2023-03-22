@@ -1,65 +1,67 @@
 #include <stdlib.h>
-#include <strings.h>
+
 #include "requisicao.h"
 
 struct node
 {
-    struct Requisicao *value;
-    struct node *next;
+    struct Requisicao *value; // aqui fica o valor armazenado no nó
+    struct node *next; // aqui fica o ponteiro para o próximo nó
 };
 
 struct queue{
-    struct node *head;
-    struct node *tail;
+    struct node *head; //aponta para o nó cabeça no início da fila
+    struct node *tail; //aponta para o nó cauda no fim da fila
     int size;
 };
 
+//inicializada a fila passada como argumento
 void initQueue(struct queue *q){
     q->head = NULL;
     q->tail = NULL;
     q->size = 0;
 }
 
-struct queue* get_queue(){
+//aloca a memória para a estrutura que armazena os ponteiros para a cabeça e para a cauda da fila
+struct queue* aloca_fila(){
     return (struct queue *)malloc(sizeof(struct queue));
 }
 
-void enqueue(struct queue *q, struct Requisicao *newValue){
+void inserir(struct queue *q, struct Requisicao *newValue){
     
-    //cria um novo ponteiro nova_requisicao dentro da instancia enqueue
+    //cria um novo ponteiro nova_requisicao dentro da instancia de inserir
     struct Requisicao *nova_requisicao = get_requisicao();
     
     cria_requisicao(nova_requisicao,get_nome(newValue),get_identificador(newValue),get_procedimento(newValue));
 
-    //create a new node
+    //cria um novo nó alocando o espaço na memória
     struct node *newNode = malloc(sizeof(struct node));
     
     newNode->value = nova_requisicao;
     newNode->next = NULL;
     
-    // if a tail exists the connect the actual tail node to the new node, so the new node will be the new tail
+    // se o fim da fila (tail/cauda) existir então conecte a cauda atual ao novo nó, de modo que o novo nó se torne a nova cauda
     
     if (q->tail != NULL){
         (q->tail)->next = newNode;
     }
     (q->tail) = newNode;
         
-    //if the head does not exist the make the new node the head of the queue
+    //se o início da fila (head/cabeça) não existir então faça que a nova cabeça da fila seja o novo nó, isto acontece quando a fila está vazia
     if (q->head == NULL){
         q->head = newNode;
     }
         
-    //increments the queue size
+    //adiciona 1 elemente ao tamanho (size) da fila
     q->size = q->size+1;
     
-    
+
 }
 
 int get_size(struct queue *q){
     return q->size;
 }
 
-void dequeue(struct queue *q, struct Requisicao *resultado){
+void remover(struct queue *q, struct Requisicao *resultado){
     //checks if the queue is empty
     if (q->head==NULL) {
         cria_requisicao(resultado,"erro",-1,"erro");
