@@ -16,8 +16,8 @@ int main() {
 
     char procedimentos[][20] = {"123.1", "345.6", "678.9", "098.1", "758.5", "23.4", "5.98", "4,32", "3.3", "1.4"};
     
-    struct queue *estrutura = aloca_fila(); //
-    initQueue(estrutura);
+    struct fila *estrutura = aloca_fila(); //
+    inicia_fila(estrutura);
 
     int i;
     

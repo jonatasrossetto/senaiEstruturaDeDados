@@ -16,6 +16,7 @@ struct Requisicao* get_requisicao(){
 }
 
 void cria_requisicao(struct Requisicao *requisicao, char *novo_nome, int novo_identificador, char *novo_procedimento){
+    //atribui valores aos campos da Requisicao no endereço definido em requisicao
     int tamanho = strlen(novo_nome);
     if (tamanho > 40) {
         novo_nome[40-1]='\0';
@@ -30,13 +31,16 @@ void cria_requisicao(struct Requisicao *requisicao, char *novo_nome, int novo_id
 };
 
 char* get_nome(struct Requisicao *req){
+    //retorna o nome da Requisição req
     return req->nome;
 }
 
 int get_identificador(struct Requisicao *req){
+    //retorna o identificador da Requisição req
     return req->identificador;
 }
 
 char* get_procedimento(struct Requisicao *req){
+    //retorna o procedimento da Requisição req
     return req->procedimento;
 }

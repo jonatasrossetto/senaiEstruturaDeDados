@@ -4,85 +4,87 @@
 
 struct node
 {
-    struct Requisicao *value; // aqui fica o valor armazenado no nó
+    struct Requisicao *value; // Requisição armazenada no nó
     struct node *next; // aqui fica o ponteiro para o próximo nó
 };
 
-struct queue{
+struct fila{
     struct node *head; //aponta para o nó cabeça no início da fila
     struct node *tail; //aponta para o nó cauda no fim da fila
     int size;
 };
 
 //inicializada a fila passada como argumento
-void initQueue(struct queue *q){
+void inicia_fila(struct fila *q){
     q->head = NULL;
     q->tail = NULL;
     q->size = 0;
 }
 
 //aloca a memória para a estrutura que armazena os ponteiros para a cabeça e para a cauda da fila
-struct queue* aloca_fila(){
-    return (struct queue *)malloc(sizeof(struct queue));
+struct fila* aloca_fila(){
+    return (struct fila *)malloc(sizeof(struct fila));
 }
 
-void inserir(struct queue *q, struct Requisicao *newValue){
-    
+void inserir(struct fila *q, struct Requisicao *novo_valor){
+    //adiciona 1 elemento na fila
+
     //cria um novo ponteiro nova_requisicao dentro da instancia de inserir
     struct Requisicao *nova_requisicao = get_requisicao();
     
-    cria_requisicao(nova_requisicao,get_nome(newValue),get_identificador(newValue),get_procedimento(newValue));
+    cria_requisicao(nova_requisicao,get_nome(novo_valor),get_identificador(novo_valor),get_procedimento(novo_valor));
 
     //cria um novo nó alocando o espaço na memória
-    struct node *newNode = malloc(sizeof(struct node));
+    struct node *new_node = malloc(sizeof(struct node));
+    if (new_node!=NULL) {
+        new_node->value = nova_requisicao;
+        new_node->next = NULL;
     
-    newNode->value = nova_requisicao;
-    newNode->next = NULL;
-    
-    // se o fim da fila (tail/cauda) existir então conecte a cauda atual ao novo nó, de modo que o novo nó se torne a nova cauda
-    
-    if (q->tail != NULL){
-        (q->tail)->next = newNode;
-    }
-    (q->tail) = newNode;
+        if (q->tail != NULL){
+            // se o fim da fila (tail/cauda) existir então conecte a cauda atual ao novo nó, de modo que o novo nó se torne a nova cauda
+            (q->tail)->next = new_node;
+        }
+        //defina a cauda/tail da fila como o novo nó
+        (q->tail) = new_node;
         
-    //se o início da fila (head/cabeça) não existir então faça que a nova cabeça da fila seja o novo nó, isto acontece quando a fila está vazia
-    if (q->head == NULL){
-        q->head = newNode;
-    }
+        if (q->head == NULL){
+            //se o início da fila (head/cabeça) não existir então faça que a nova cabeça da fila seja o novo nó, isto acontece quando a fila está vazia
+            q->head = new_node;
+        }
         
-    //adiciona 1 elemente ao tamanho (size) da fila
-    q->size = q->size+1;
+        //adiciona 1 elemento ao tamanho (size) da fila
+        q->size = q->size+1;
+    }
+    
     
 
 }
 
-int get_size(struct queue *q){
+int get_size(struct fila *q){
     return q->size;
 }
 
-void remover(struct queue *q, struct Requisicao *resultado){
-    //checks if the queue is empty
+void remover(struct fila *q, struct Requisicao *resultado){
+    //remove um elemento da fila
     if (q->head==NULL) {
+        //retorna um erro se a fila estiver vazia
         cria_requisicao(resultado,"erro",-1,"erro");
     } else {
         
-        // creates a temporary node to store the actual head info
-        struct node *temp = q->head;
-
-        cria_requisicao(resultado,get_nome(q->head->value),get_identificador(temp->value),get_procedimento(temp->value)); // get the value stored in the head
+        //retorna em resultado os dados armazenados na cabeça/head da fila 
+        cria_requisicao(resultado,get_nome(q->head->value),get_identificador(q->head->value),get_procedimento(q->head->value)); 
         
-        q->head = (q->head)->next; // make the next node the new head
+        // faz com que o próximo nó seja a nova cabeça/head da fila
+        q->head = (q->head)->next; 
     
-        //deals with the queue being empty by the dequeue action
+        //caso o próximo nó seja nulo (todos os elementos já foram removidos)
+        //atribua nulo à cauda/tail da fila 
         if (q->head==NULL){
             q->tail=NULL;
         }
     
-        //decrements the queue size
+        //diminui 1 elemento do tamanho (size) da fila 
         q->size = q->size-1;
 
-        //free the memory allocated for the temp variable
-        free(temp);
     }
 }
