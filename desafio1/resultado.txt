@@ -1,0 +1,103 @@
+*****************************************************************************
+Resultado do executável teste_exe.c 
+
+C:\Users\jonat\OneDrive\CODING\senai_estrutura_de_dados\desafio1>teste
+
+C:\Users\jonat\OneDrive\CODING\senai_estrutura_de_dados\desafio1>gcc -c requisicao.c
+
+C:\Users\jonat\OneDrive\CODING\senai_estrutura_de_dados\desafio1>gcc -c estrutura.c
+
+C:\Users\jonat\OneDrive\CODING\senai_estrutura_de_dados\desafio1>gcc teste.c requisicao.c estrutura.c -o teste_exe.exe
+
+C:\Users\jonat\OneDrive\CODING\senai_estrutura_de_dados\desafio1>teste_exe.exe
+Insercao de                                     Joao, quantidade na estrutura: 0001
+Insercao de                                     Jose, quantidade na estrutura: 0002
+Insercao de                                    Maria, quantidade na estrutura: 0003
+Insercao de                                   Silvia, quantidade na estrutura: 0004
+Insercao de                                    Sonia, quantidade na estrutura: 0005
+Insercao de                                    Pedro, quantidade na estrutura: 0006
+Insercao de                                    Lucas, quantidade na estrutura: 0007
+Insercao de                               Bernardete, quantidade na estrutura: 0008
+Insercao de                                    Lucia, quantidade na estrutura: 0009
+Insercao de                                   Olivia, quantidade na estrutura: 0010
+Fim da insercao.
+Inicio da remocao
+Removido                                        Joao, quantidade na estrutura: 0009
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274EA20
+Nome        :                                     Joao
+Inscricao   :                                        0
+Procedimento:                                    123.1
+
+Removido                                        Jose, quantidade na estrutura: 0008
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E760
+Nome        :                                     Jose
+Inscricao   :                                        1
+Procedimento:                                    345.6
+
+Removido                                       Maria, quantidade na estrutura: 0007
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E7E0
+Nome        :                                    Maria
+Inscricao   :                                        2
+Procedimento:                                    678.9
+
+Removido                                      Silvia, quantidade na estrutura: 0006
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E6E0
+Nome        :                                   Silvia
+Inscricao   :                                        3
+Procedimento:                                    098.1
+
+Removido                                       Sonia, quantidade na estrutura: 0005
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E7E0
+Nome        :                                    Sonia
+Inscricao   :                                        4
+Procedimento:                                    758.5
+
+Removido                                       Pedro, quantidade na estrutura: 0004
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E6A0
+Nome        :                                    Pedro
+Inscricao   :                                        5
+Procedimento:                                     23.4
+
+Removido                                       Lucas, quantidade na estrutura: 0003
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E620
+Nome        :                                    Lucas
+Inscricao   :                                        6
+Procedimento:                                     5.98
+
+Removido                                  Bernardete, quantidade na estrutura: 0002
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274EA60
+Nome        :                               Bernardete
+Inscricao   :                                        7
+Procedimento:                                     4,32
+
+Removido                                       Lucia, quantidade na estrutura: 0001
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E9A0
+Nome        :                                    Lucia
+Inscricao   :                                        8
+Procedimento:                                      3.3
+
+Removido                                      Olivia, quantidade na estrutura: 0000
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E920
+Nome        :                                   Olivia
+Inscricao   :                                        9
+Procedimento:                                      1.4
+
+Removido                                        erro, quantidade na estrutura: 0000
+---------------------------------------------------------------------------------------------
+Endereco: 000001DF4274E560
+Nome        :                                     erro
+Inscricao   :                                       -1
+Procedimento:                                     erro
+
+
+C:\Users\jonat\OneDrive\CODING\senai_estrutura_de_dados\desafio1>
